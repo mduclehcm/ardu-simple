@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { SerialPortSelector } from './components/SerialPortSelector';
+import { MAVLinkMessageViewer } from './components/MAVLinkMessageViewer';
+import { useSerial } from './hooks/useSerial';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {
+    connectionState,
+    messages,
+    parserStats,
+    isSupported,
+    requestPort,
+    connect,
+    disconnect,
+    clearMessages
+  } = useSerial();
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+    <div className="app">
+      <header className="app-header">
+        <h1>Ardu-Simple</h1>
+        <p>MAVLink Serial Communication Tool</p>
+      </header>
+
+      <main className="app-main">
+        <div className="app-layout">
+          <div className="left-panel">
+            <SerialPortSelector
+              isSupported={isSupported()}
+              connectionState={connectionState}
+              onRequestPort={requestPort}
+              onConnect={connect}
+              onDisconnect={disconnect}
+            />
+          </div>
+
+          <div className="right-panel">
+            <MAVLinkMessageViewer
+              messages={messages}
+              parserStats={parserStats}
+              onClearMessages={clearMessages}
+            />
+          </div>
+        </div>
+      </main>
+
+      <footer className="app-footer">
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          Built with React, TypeScript, and Web Serial API
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;

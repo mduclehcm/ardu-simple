@@ -1,0 +1,149 @@
+.serial-port-selector {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.connection-panel h3 {
+  margin: 0 0 20px 0;
+  color: #1f2937;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.port-section,
+.baudrate-section,
+.connection-controls,
+.status-section {
+  margin-bottom: 16px;
+}
+
+.port-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.port-info {
+  flex: 1;
+  min-width: 200px;
+}
+
+.port-name {
+  color: #059669;
+  font-weight: 500;
+}
+
+.no-port {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.baudrate-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.baudrate-select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.btn-secondary {
+  background: #6b7280;
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #4b5563;
+}
+
+.btn-danger {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+.status-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6b7280;
+}
+
+.status-indicator.connected .status-dot {
+  background: #10b981;
+}
+
+.status-text {
+  font-size: 14px;
+  color: #374151;
+}
+
+.error-message {
+  color: #dc2626;
+  font-size: 14px;
+  background: #fef2f2;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #fecaca;
+}
+
+.error-message h3 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+}
+
+.error-message p {
+  margin: 0;
+  font-size: 14px;
+} 
