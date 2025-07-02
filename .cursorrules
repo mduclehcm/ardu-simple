@@ -1,0 +1,247 @@
+# ArduPilot Ground Station Control - Cursor Rules
+
+## Project Overview
+This is a simple, user-friendly ground station control application designed specifically for hobby-level FPV plane users with ArduPilot autopilot systems. The application focuses on ease of use and reliability, providing essential real-time monitoring and control capabilities through a clean, responsive web interface.
+
+## Core Technologies
+- **Frontend**: React 19.1.0 with TypeScript
+- **Build Tool**: Vite 7.0.0
+- **Serial Communication**: Web Serial API + WebSocket (future)
+- **Protocol**: MAVLink (Micro Air Vehicle Link)
+- **Styling**: Tailwind CSS for utility-first design
+- **State Management**: Zustand for lightweight state management
+
+## Architecture Patterns
+
+### Component Structure
+- Use functional components with TypeScript interfaces
+- **Keep components as small as possible** - prefer composition over large monolithic components
+- **Compose complex UIs from multiple small, focused components**
+- Implement custom hooks for complex logic (e.g., `useSerial`)
+- Separate concerns: UI components, business logic, and utilities
+- Follow React best practices for state management and effects
+- Use Zustand for global state management (connection state, settings)
+- Each component should have a single, clear responsibility
+- **Prefer prop drilling for shallow hierarchies, Zustand for deep state sharing**
+
+### Serial Communication
+- Use the Web Serial API for browser-based serial communication
+- Implement proper error handling for serial port operations
+- Support MAVLink protocol parsing and message handling
+- Maintain connection state management with proper cleanup
+- Plan for WebSocket support for remote connections and data sharing
+- Focus on reliable connection with clear status indicators
+
+### MAVLink Protocol
+- Parse MAVLink v2 message formats
+- Handle common message types: HEARTBEAT, GPS_RAW_INT, ATTITUDE
+- Implement proper message validation and error handling
+- Support real-time message display with filtering capabilities
+- Focus on essential telemetry data for FPV flying
+- Keep message parsing simple and reliable
+
+## Coding Standards
+
+### TypeScript
+- Use strict TypeScript configuration
+- Define comprehensive interfaces for all data structures
+- Use type guards for runtime type checking
+- Prefer `interface` over `type` for object shapes
+- Export types from dedicated type files
+
+### React Patterns
+- Use functional components with hooks
+- Implement proper dependency arrays in useEffect
+- Use useCallback for memoization when appropriate
+- Follow React naming conventions (PascalCase for components)
+- Implement proper prop interfaces for all components
+
+### Error Handling
+- Implement comprehensive error boundaries
+- Use try-catch blocks for async operations
+- Provide user-friendly error messages
+- Log errors appropriately for debugging
+
+### Performance
+- Implement message limiting to prevent memory issues
+- Use proper cleanup in useEffect hooks
+- Optimize re-renders with React.memo when needed
+- Implement efficient message filtering and display
+- Use Tailwind CSS for optimized styling performance
+- Keep state updates minimal and efficient
+
+## File Organization
+
+### Directory Structure
+```
+src/
+├── components/     # React UI components
+├── hooks/         # Custom React hooks
+├── stores/        # Zustand state stores
+├── types/         # TypeScript type definitions
+├── utils/         # Utility functions and services
+├── assets/        # Static assets
+└── styles/        # Tailwind CSS configuration
+```
+
+### Naming Conventions
+- Components: PascalCase (e.g., `MAVLinkMessageViewer`)
+- Hooks: camelCase with 'use' prefix (e.g., `useSerial`)
+- Stores: camelCase with 'Store' suffix (e.g., `connectionStore`)
+- Types: PascalCase (e.g., `SerialConnectionState`)
+- Utilities: camelCase (e.g., `serialManager`)
+- Files: kebab-case for components, camelCase for utilities
+
+## MAVLink-Specific Guidelines
+
+### Message Handling
+- Implement proper MAVLink message parsing
+- Support multiple message types with extensible architecture
+- Handle message validation and error recovery
+- Provide real-time message statistics
+
+### Serial Communication
+- Support multiple baud rates (default: 115200)
+- Implement proper port selection and connection management
+- Handle connection state changes gracefully
+- Provide clear feedback for connection status
+
+### UI/UX Considerations
+- Implement responsive design for desktop/tablet/mobile
+- Provide real-time data visualization with clear, large displays
+- Include simple message filtering for essential data
+- Support auto-scroll with manual override option
+- Use Tailwind CSS for consistent, clean design
+- Focus on readability and quick information access
+- Design for outdoor use with good contrast and large touch targets
+
+## Development Workflow
+
+### Adding New Features
+1. Define TypeScript interfaces first
+2. Implement utility functions for business logic
+3. Create Zustand stores for state management
+4. **Break down UI into small, focused components**
+5. **Compose complex features from multiple simple components**
+6. Build UI components with proper prop interfaces
+7. Add comprehensive error handling
+8. Test with real MAVLink devices when possible
+9. Keep features simple and focused on FPV flying needs
+
+### Testing Considerations
+- Test serial communication with various devices
+- Validate MAVLink message parsing accuracy
+- Test UI responsiveness across different screen sizes
+- Verify error handling for edge cases
+- Test outdoor visibility and touch interaction
+- Validate with common FPV plane setups
+- **Test individual components in isolation**
+- **Test component composition and integration**
+
+### Performance Optimization
+- Limit message history to prevent memory issues
+- Implement efficient message filtering
+- Use proper React optimization techniques
+- Monitor serial buffer management
+- Optimize Tailwind CSS builds for production
+- Keep Zustand stores lightweight and focused
+- **Use React.memo for expensive components**
+- **Optimize re-renders by keeping components small and focused**
+
+## Hobby FPV User Focus
+
+### Essential Features
+- **Quick Connection**: One-click serial port connection
+- **Critical Data Display**: Battery voltage, GPS position, altitude, heading
+- **Simple Controls**: Basic flight mode switching and RTL activation
+- **Reliable Connection**: Clear connection status and error recovery
+- **Field-Friendly UI**: Large buttons, high contrast, touch-friendly
+
+### User Experience Priorities
+- **Simplicity**: Avoid overwhelming users with complex features
+- **Reliability**: Focus on stable connection and data display
+- **Accessibility**: Design for outdoor use in various lighting conditions
+- **Speed**: Quick startup and responsive interface
+- **Battery Efficiency**: Optimize for mobile device battery life
+
+## Security Considerations
+- Web Serial API requires user interaction for port selection
+- Validate all incoming MAVLink messages
+- Implement proper error handling to prevent crashes
+- Consider data sanitization for display purposes
+
+## Technology-Specific Guidelines
+
+### React Component Composition
+- **Break down large components into smaller, focused pieces**
+- **Use composition patterns: Container/Presentational, Compound Components**
+- **Create reusable UI primitives** (Button, Card, Badge, etc.)
+- **Compose complex features from simple building blocks**
+- **Keep component files under 100 lines when possible**
+- **Use TypeScript interfaces for all component props**
+- **Prefer function components with hooks over class components**
+
+### Tailwind CSS
+- Use utility-first approach for consistent styling
+- Create reusable component classes for common patterns
+- Optimize for mobile-first responsive design
+- Use semantic color names for better maintainability
+- Implement dark mode support for outdoor use
+
+### Zustand State Management
+- Keep stores small and focused on specific domains
+- Use TypeScript for store state and actions
+- Implement proper state persistence for user preferences
+- Use middleware for logging and debugging
+- Keep state updates minimal and efficient
+
+## Browser Compatibility
+- Target modern browsers with Web Serial API support
+- Implement graceful degradation for unsupported features
+- Test across different browsers and platforms
+- Consider mobile device limitations
+
+## Documentation
+- Document all public APIs and interfaces
+- Include JSDoc comments for complex functions
+- Maintain README with setup and usage instructions
+- Document MAVLink message format specifications
+
+## Component Composition Examples
+
+### Ground Station Layout Pattern
+```typescript
+// Instead of one large component, compose from smaller pieces:
+<GroundStationLayout>
+  <ConnectionPanel />
+  <TelemetryGrid>
+    <BatteryIndicator />
+    <GPSDisplay />
+    <AltitudeGauge />
+    <HeadingCompass />
+  </TelemetryGrid>
+  <MessageViewer />
+  <ControlPanel />
+</GroundStationLayout>
+```
+
+### Reusable UI Primitives
+```typescript
+// Create small, reusable components:
+<Card>
+  <CardHeader title="Battery Status" />
+  <CardContent>
+    <BatteryLevel value={batteryLevel} />
+  </CardContent>
+</Card>
+```
+
+## Future Considerations
+- Support for additional MAVLink message types
+- WebSocket support for remote monitoring and data sharing
+- Simple mission planning for basic waypoint navigation
+- Essential parameter configuration for common FPV setups
+- Basic flight data logging and playback
+- Multi-vehicle support for formation flying
+- Offline capabilities with service workers
+- Mobile app wrapper for better field experience 
