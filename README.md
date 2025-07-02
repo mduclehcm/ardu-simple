@@ -11,20 +11,6 @@ A modern web-based ground station control application specifically designed for 
 - **Responsive Web Interface**: Works on desktop, tablet, and mobile devices
 - **Cross-platform**: Runs in any modern web browser
 
-## Technology Stack
-
-- **Frontend**: React 18 with TypeScript
-- **Build Tool**: Vite for fast development and optimized builds
-- **UI Framework**: Modern CSS with responsive design
-- **Communication**: WebSocket/HTTP for real-time data exchange with ArduPilot
-
-## Prerequisites
-
-- Node.js 18+ and npm/pnpm
-- ArduPilot-compatible vehicle (drone, rover, boat, etc.)
-- Ground control station (Mission Planner, QGroundControl, or similar) for initial setup
-- Web browser with WebSocket support
-
 ## Installation
 
 1. Clone the repository:
@@ -44,44 +30,6 @@ pnpm dev
 ```
 
 4. Open your browser and navigate to `http://localhost:5173`
-
-## Configuration
-
-### ArduPilot Setup
-
-1. Ensure your ArduPilot vehicle is configured for telemetry output
-2. Set up the appropriate communication protocol (MAVLink over UDP/TCP)
-3. Configure the ground station to forward telemetry data to this web application
-
-### Application Configuration
-
-Create a configuration file to specify:
-- Telemetry source (IP address and port)
-- Vehicle type and capabilities
-- Default mission parameters
-- Logging preferences
-
-## Usage
-
-### Connecting to Vehicle
-
-1. Ensure your ArduPilot vehicle is powered on and transmitting telemetry
-2. Configure the connection settings in the web interface
-3. Click "Connect" to establish communication
-
-### Mission Planning
-
-1. Use the map interface to create waypoints
-2. Set mission parameters for each waypoint
-3. Upload the mission to your vehicle
-4. Monitor mission execution in real-time
-
-### Parameter Management
-
-1. Browse available parameters by category
-2. Modify parameters as needed
-3. Save changes to the vehicle
-4. Monitor parameter changes in real-time
 
 ## Development
 
