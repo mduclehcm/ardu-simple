@@ -1,69 +1,151 @@
-# React + TypeScript + Vite
+# ArduPilot Ground Station Control
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web-based ground station control application specifically designed for ArduPilot autopilot systems. This application provides real-time monitoring, control, and mission planning capabilities through a responsive web interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Real-time Telemetry**: Monitor vehicle position, attitude, and system status
+- **Mission Planning**: Create and upload flight missions to ArduPilot vehicles
+- **Parameter Management**: View and modify vehicle parameters in real-time
+- **Flight Data Logging**: Record and analyze flight data
+- **Responsive Web Interface**: Works on desktop, tablet, and mobile devices
+- **Cross-platform**: Runs in any modern web browser
 
-## Expanding the ESLint configuration
+## Technology Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend**: React 18 with TypeScript
+- **Build Tool**: Vite for fast development and optimized builds
+- **UI Framework**: Modern CSS with responsive design
+- **Communication**: WebSocket/HTTP for real-time data exchange with ArduPilot
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Node.js 18+ and npm/pnpm
+- ArduPilot-compatible vehicle (drone, rover, boat, etc.)
+- Ground control station (Mission Planner, QGroundControl, or similar) for initial setup
+- Web browser with WebSocket support
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/mduclehcm/ardu-simple.git
+cd ardu-simple
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies:
+```bash
+pnpm install
 ```
+
+3. Start the development server:
+```bash
+pnpm dev
+```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## Configuration
+
+### ArduPilot Setup
+
+1. Ensure your ArduPilot vehicle is configured for telemetry output
+2. Set up the appropriate communication protocol (MAVLink over UDP/TCP)
+3. Configure the ground station to forward telemetry data to this web application
+
+### Application Configuration
+
+Create a configuration file to specify:
+- Telemetry source (IP address and port)
+- Vehicle type and capabilities
+- Default mission parameters
+- Logging preferences
+
+## Usage
+
+### Connecting to Vehicle
+
+1. Ensure your ArduPilot vehicle is powered on and transmitting telemetry
+2. Configure the connection settings in the web interface
+3. Click "Connect" to establish communication
+
+### Mission Planning
+
+1. Use the map interface to create waypoints
+2. Set mission parameters for each waypoint
+3. Upload the mission to your vehicle
+4. Monitor mission execution in real-time
+
+### Parameter Management
+
+1. Browse available parameters by category
+2. Modify parameters as needed
+3. Save changes to the vehicle
+4. Monitor parameter changes in real-time
+
+## Development
+
+### Project Structure
+
+```
+src/
+├── components/     # React components
+├── hooks/         # Custom React hooks
+├── services/      # API and communication services
+├── types/         # TypeScript type definitions
+├── utils/         # Utility functions
+└── assets/        # Static assets
+```
+
+### Building for Production
+
+```bash
+pnpm build
+```
+
+The built application will be in the `dist/` directory, ready for deployment to any web server.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+MIT License
+
+Copyright (c) 2024 ArduPilot Ground Station Control
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+## Support
+
+For issues and questions:
+- Check the [Issues](https://github.com/mduclehcm/ardu-simple/issues) page
+- Review ArduPilot documentation for vehicle-specific questions
+- Consult the [ArduPilot forums](https://discuss.ardupilot.org/)
+
+## Acknowledgments
+
+- Built with [React](https://reactjs.org/) and [Vite](https://vitejs.dev/)
+- Designed for [ArduPilot](https://ardupilot.org/) autopilot systems
+- Inspired by open-source ground station projects
